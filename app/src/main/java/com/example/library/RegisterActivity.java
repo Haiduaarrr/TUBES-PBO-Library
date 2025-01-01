@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -22,11 +23,24 @@ public class RegisterActivity extends AppCompatActivity {
         EditText username = findViewById(R.id.etUsername);
         EditText password = findViewById(R.id.etPassword);
         EditText confirmPassword = findViewById(R.id.etConfirmPassword);
-        RadioGroup roleGroup = findViewById(R.id.roleGroup); // RadioGroup
-        Button btnNext = findViewById(R.id.btnNext);
+        EditText adminCode = findViewById(R.id.etAdminCode);
+        RadioGroup roleGroup = findViewById(R.id.radioGroupRole);
+        Button btnRegister = findViewById(R.id.btnRegister);
 
-        // Tambahkan logika tombol Next
-        btnNext.setOnClickListener(view -> {
+        // Tampilkan atau sembunyikan input kode admin berdasarkan pilihan role
+        roleGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton selectedRoleButton = findViewById(checkedId);
+            String role = selectedRoleButton.getTag().toString();
+
+            if (role.equals("Admin")) {
+                adminCode.setVisibility(View.VISIBLE);
+            } else {
+                adminCode.setVisibility(View.GONE);
+            }
+        });
+
+        // Tambahkan logika tombol Register
+        btnRegister.setOnClickListener(view -> {
             String user = username.getText().toString();
             String pass = password.getText().toString();
             String confirmPass = confirmPassword.getText().toString();
@@ -52,6 +66,15 @@ public class RegisterActivity extends AppCompatActivity {
                 RadioButton selectedRoleButton = findViewById(selectedRoleId);
                 String role = selectedRoleButton.getTag().toString();
 
+                // Periksa jika role adalah Admin dan verifikasi kode admin
+                if (role.equals("Admin")) {
+                    String inputAdminCode = adminCode.getText().toString().trim();
+                    if (!inputAdminCode.equals("123")) {
+                        Toast.makeText(RegisterActivity.this, "Kode Admin salah", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
                 // Simpan username, password, dan role ke SharedPreferences
                 SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -74,6 +97,6 @@ public class RegisterActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(RegisterActivity.this, "Pilih role terlebih dahulu", Toast.LENGTH_SHORT).show();
             }
-        });
-    }
+  });
+}
 }

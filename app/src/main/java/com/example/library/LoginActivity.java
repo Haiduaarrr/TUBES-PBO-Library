@@ -20,45 +20,49 @@ public class LoginActivity extends AppCompatActivity {
         EditText username = findViewById(R.id.etUsername);
         EditText password = findViewById(R.id.etPassword);
         Button btnLogin = findViewById(R.id.btnLogin);
-        Button btnRegister = findViewById(R.id.btnRegister); // Tombol untuk register
+        Button btnRegister = findViewById(R.id.btnRegister);
 
         // Tambahkan logika tombol Login
         btnLogin.setOnClickListener(view -> {
-            String user = username.getText().toString();
-            String pass = password.getText().toString();
+            String user = username.getText().toString().trim();
+            String pass = password.getText().toString().trim();
 
             if (!user.isEmpty() && !pass.isEmpty()) {
-                // Akses SharedPreferences untuk memeriksa kredensial
+                // Akses SharedPreferences
                 SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
                 String savedUsername = sharedPreferences.getString("username", null);
                 String savedPassword = sharedPreferences.getString("password", null);
-                String savedRole = sharedPreferences.getString("role", null); // Mengakses role
+                String savedRole = sharedPreferences.getString("role", null);
 
-                // Verifikasi username dan password
-                if (savedUsername != null && savedPassword != null && savedUsername.equals(user) && savedPassword.equals(pass)) {
-                    // Login berhasil
-                    Toast.makeText(LoginActivity.this, "Login berhasil!", Toast.LENGTH_SHORT).show();
+                // Debugging untuk memastikan data
+                System.out.println("Saved Username: " + savedUsername);
+                System.out.println("Saved Password: " + savedPassword);
+                System.out.println("Saved Role: " + savedRole);
+
+                // Verifikasi username, password, dan role
+                if (savedUsername != null && savedPassword != null && savedRole != null &&
+                        savedUsername.equals(user) && savedPassword.equals(pass)) {
 
                     // Berdasarkan role, navigasi ke halaman yang sesuai
-                    if ("admin".equals(savedRole)) {
+                    if ("admin".equalsIgnoreCase(savedRole)) {
                         Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                         startActivity(intent);
-                    } else if ("user".equals(savedRole)) {
+                    } else if ("user".equalsIgnoreCase(savedRole)) {
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(LoginActivity.this, "Role tidak valid!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Role tidak valid! Hubungi admin.", Toast.LENGTH_SHORT).show();
                     }
-                    finish(); // Tutup LoginActivity agar tidak bisa kembali ke login menggunakan tombol back
+                    finish(); // Tutup LoginActivity
                 } else {
-                    Toast.makeText(LoginActivity.this, "Username atau password salah", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Username atau password salah!", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 Toast.makeText(LoginActivity.this, "Username dan password tidak boleh kosong!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Tambahkan logika tombol Register
+        // Tombol Register
         btnRegister.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);

@@ -7,29 +7,39 @@
     android:gravity="center"
     android:background="#FFFFFF">
 
+    <!-- Judul Halaman -->
     <TextView
         android:id="@+id/tvSearchTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Search Page"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:textStyle="bold"
-        android:textColor="#000000" />
+        android:textColor="#333333"
+        android:layout_marginBottom="24dp" />
 
+    <!-- Kotak Input Pencarian -->
     <EditText
         android:id="@+id/etSearchInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter search query"
-        android:layout_marginTop="16dp"
-        android:padding="12dp" />
+        android:textColor="#000000"
+        android:textColorHint="#888888"
+        android:padding="12dp"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginBottom="16dp" />
 
+    <!-- Tombol Pencarian -->
     <Button
         android:id="@+id/btnSearch"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Search"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#4A0D00"
-        android:textColor="#FFFFFF" />
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/rounded_button"
+        android:padding="12dp" />
+
+
 </LinearLayout>
