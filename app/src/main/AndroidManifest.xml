@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Login -->
+                <!-- Login -->
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -71,6 +71,17 @@
             android:name=".ManageUsersActivity"
             android:exported="false"
             android:label="Manage Users" />
+
+        <!-- Tambahkan deklarasi untuk DatabaseConnectionTest -->
+        <activity
+            android:name=".DatabaseConnectionTest"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
     </application>
 
