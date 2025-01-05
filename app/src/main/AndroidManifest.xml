@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
 
-                <!-- Login -->
+        <!-- Login -->
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -72,7 +72,6 @@
             android:exported="false"
             android:label="Manage Users" />
 
-        <!-- Tambahkan deklarasi untuk DatabaseConnectionTest -->
         <activity
             android:name=".DatabaseConnectionTest"
             android:exported="true">
@@ -82,7 +81,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".BorrowedBooksActivity"
+            android:exported="true"
+            android:label="Borrowed Books" />
 
     </application>
-
 </manifest>
