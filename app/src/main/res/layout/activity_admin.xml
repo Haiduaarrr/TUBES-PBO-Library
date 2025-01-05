@@ -13,15 +13,16 @@
         android:id="@+id/adminTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Admin Dashboard"
-        android:textSize="26sp"
+        android:text="R A K    B U K U"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#333333"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:fontFamily="serif"/>
 
     <!-- Divider -->
     <View
@@ -54,7 +55,7 @@
         android:layout_height="wrap_content"
         android:text="Manage Books"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#6200EE"
+        android:backgroundTint="#4A0D00"
         android:drawablePadding="8dp"
         android:padding="12dp"
         android:layout_marginStart="16dp"
@@ -71,7 +72,7 @@
         android:layout_height="wrap_content"
         android:text="Manage Users"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#6200EE"
+        android:backgroundTint="#4A0D00"
         android:drawablePadding="8dp"
         android:padding="12dp"
         android:layout_marginStart="16dp"

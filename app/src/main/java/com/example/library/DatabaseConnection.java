@@ -13,7 +13,7 @@ public class DatabaseConnection {
     // Replace these values with your MySQL database details
     private static final String URL = "jdbc:mysql://10.0.2.2:3306/perpustakaan"; // For emulator use 10.0.2.2
     private static final String USER = "root"; // Replace with your MySQL username
-    private static final String PASSWORD = "!#G43(m*Sd$x!"; // Replace with your MySQL password
+    private static final String PASSWORD = "admin"; // Replace with your MySQL password
 
     public static Connection connect() {
         Connection connection = null;

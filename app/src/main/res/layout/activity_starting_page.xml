@@ -9,7 +9,7 @@
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RAK BUKU"
+        android:text="R A K    B U K U"
         android:textSize="32sp"
         android:textColor="#000000"
         android:layout_marginBottom="16dp"

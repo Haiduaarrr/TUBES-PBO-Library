@@ -2,18 +2,12 @@ package com.example.library;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -31,23 +25,8 @@ public class HomeActivity extends AppCompatActivity {
         String loggedInUsername = getIntent().getStringExtra("username");
 
         if (loggedInUsername != null) {
-            try (Connection connection = DatabaseConnection.connect()) {
-                // Query untuk mendapatkan detail pengguna dari database
-                String query = "SELECT p.nama FROM user u JOIN person p ON u.person_id = p.person_id WHERE u.username = ?";
-                PreparedStatement stmt = connection.prepareStatement(query);
-                stmt.setString(1, loggedInUsername);
-
-                ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    String fullName = rs.getString("nama");
-                    userName.setText(fullName); // Tampilkan nama pengguna
-                    userLocation.setText("Bandung, Indonesia");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                userName.setText("Error");
-                userLocation.setText("Unknown Location");
-            }
+            userName.setText(loggedInUsername);
+            userLocation.setText("Bandung, Indonesia");
         } else {
             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -56,15 +35,23 @@ public class HomeActivity extends AppCompatActivity {
 
         // Setup RecyclerView untuk Popular Books
         RecyclerView rvPopularBooks = findViewById(R.id.rvPopularBooks);
-        List<String> popularBooks = Arrays.asList("Sherlock Holmes", "Morning Star", "Ther Merlian");
-        BookAdapter popularAdapter = new BookAdapter(this, popularBooks);
+        List<Book> popularBooks = new ArrayList<>();
+        popularBooks.add(new Book(1, "Sherlock Holmes", "Arthur Conan Doyle", 10));
+        popularBooks.add(new Book(2, "Morning Star", "Pierce Brown", 5));
+        popularBooks.add(new Book(3, "The Martian", "Andy Weir", 7));
+
+        BookAdapter popularAdapter = new BookAdapter(popularBooks);
         rvPopularBooks.setLayoutManager(new GridLayoutManager(this, 2));
         rvPopularBooks.setAdapter(popularAdapter);
 
         // Setup RecyclerView untuk Learn Books
         RecyclerView rvLearnBooks = findViewById(R.id.rvLearnBooks);
-        List<String> learnBooks = Arrays.asList("SQL", "Arduino", "Pemrograman Web");
-        BookAdapter learnAdapter = new BookAdapter(this, learnBooks);
+        List<Book> learnBooks = new ArrayList<>();
+        learnBooks.add(new Book(4, "SQL for Beginners", "John Smith", 8));
+        learnBooks.add(new Book(5, "Learn Arduino", "Jane Doe", 6));
+        learnBooks.add(new Book(6, "Web Programming", "Michael Lee", 4));
+
+        BookAdapter learnAdapter = new BookAdapter(learnBooks);
         rvLearnBooks.setLayoutManager(new GridLayoutManager(this, 2));
         rvLearnBooks.setAdapter(learnAdapter);
 
@@ -72,6 +59,7 @@ public class HomeActivity extends AppCompatActivity {
         ImageView navHome = findViewById(R.id.navHome);
         ImageView navSearch = findViewById(R.id.navSearch);
         ImageView navProfile = findViewById(R.id.navProfile);
+        ImageView btnBorrowed = findViewById(R.id.borrowed);
 
         navHome.setOnClickListener(view -> {
             // Stay on Home
@@ -84,8 +72,14 @@ public class HomeActivity extends AppCompatActivity {
 
         navProfile.setOnClickListener(view -> {
             Intent profileIntent = new Intent(HomeActivity.this, ProfileActivity.class);
-            profileIntent.putExtra("username", loggedInUsername); // Kirim username ke ProfileActivity
+            profileIntent.putExtra("username", loggedInUsername);
             startActivity(profileIntent);
+        });
+
+        // Tombol untuk melihat daftar buku yang dipinjam
+        btnBorrowed.setOnClickListener(view -> {
+            Intent borrowedIntent = new Intent(HomeActivity.this, BorrowedBooksActivity.class);
+            startActivity(borrowedIntent);
         });
     }
 }
