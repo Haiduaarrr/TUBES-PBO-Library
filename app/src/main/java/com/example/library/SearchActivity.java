@@ -3,6 +3,7 @@ package com.example.library;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -56,6 +57,10 @@ public class SearchActivity extends AppCompatActivity {
 
         // Muat data awal (semua buku)
         loadAllBooks();
+
+        // Tombol Back
+        Button btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(view -> finish());
     }
 
     // Fungsi untuk memuat semua buku dari database

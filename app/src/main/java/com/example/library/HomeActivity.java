@@ -7,6 +7,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,27 +38,13 @@ public class HomeActivity extends AppCompatActivity {
             finish();
         }
 
-        // Setup RecyclerView untuk Popular Books
-        RecyclerView rvPopularBooks = findViewById(R.id.rvPopularBooks);
-        List<Book> popularBooks = new ArrayList<>();
-        popularBooks.add(new Book(1, "Sherlock Holmes", "Arthur Conan Doyle", 10));
-        popularBooks.add(new Book(2, "Morning Star", "Pierce Brown", 5));
-        popularBooks.add(new Book(3, "The Martian", "Andy Weir", 7));
+        // Setup RecyclerView untuk Daftar Buku
+        RecyclerView rvBooks = findViewById(R.id.rvPopularBooks);
+        List<Book> books = fetchBooksFromDatabase();
 
-        BookAdapter popularAdapter = new BookAdapter(popularBooks);
-        rvPopularBooks.setLayoutManager(new GridLayoutManager(this, 2));
-        rvPopularBooks.setAdapter(popularAdapter);
-
-        // Setup RecyclerView untuk Learn Books
-        RecyclerView rvLearnBooks = findViewById(R.id.rvLearnBooks);
-        List<Book> learnBooks = new ArrayList<>();
-        learnBooks.add(new Book(4, "SQL for Beginners", "John Smith", 8));
-        learnBooks.add(new Book(5, "Learn Arduino", "Jane Doe", 6));
-        learnBooks.add(new Book(6, "Web Programming", "Michael Lee", 4));
-
-        BookAdapter learnAdapter = new BookAdapter(learnBooks);
-        rvLearnBooks.setLayoutManager(new GridLayoutManager(this, 2));
-        rvLearnBooks.setAdapter(learnAdapter);
+        BookAdapter bookAdapter = new BookAdapter(books);
+        rvBooks.setLayoutManager(new GridLayoutManager(this, 2));
+        rvBooks.setAdapter(bookAdapter);
 
         // Bottom Navigation Bar
         ImageView navHome = findViewById(R.id.navHome);
@@ -82,4 +73,28 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(borrowedIntent);
         });
     }
+
+    private List<Book> fetchBooksFromDatabase() {
+        List<Book> books = new ArrayList<>();
+
+        try (Connection connection = DatabaseConnection.connect()) {
+            String query = "SELECT book_id, title, author, stock FROM book";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("book_id");
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                int stock = rs.getInt("stock");
+
+                books.add(new Book(id, title, author, stock));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return books;
+    }
+
 }

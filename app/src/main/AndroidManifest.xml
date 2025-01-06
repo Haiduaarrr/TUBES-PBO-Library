@@ -86,5 +86,19 @@
             android:exported="true"
             android:label="Borrowed Books" />
 
+        <!-- Admin Request -->
+        <activity
+            android:name=".AdminRequestActivity"
+            android:exported="true"
+            android:label="Admin Request" />
+
+
+        <!-- Admin Request -->
+        <activity
+            android:name=".AdminReturnActivity"
+            android:exported="true"
+            android:label="Admin Return" />
+
+
     </application>
 </manifest>

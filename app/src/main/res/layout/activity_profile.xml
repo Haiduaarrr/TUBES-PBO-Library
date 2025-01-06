@@ -50,4 +50,17 @@
         android:textColor="#FFFFFF"
         android:layout_marginTop="24dp"
         android:padding="12dp" />
+
+    <!-- Tombol Back -->
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textAllCaps="false"
+        android:backgroundTint="#4A0D00"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="16dp"
+        android:padding="12dp" />
+
 </LinearLayout>

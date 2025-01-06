@@ -51,15 +51,11 @@
     <!-- Manage Books Button -->
     <Button
         android:id="@+id/btnManageBooks"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
         android:text="Manage Books"
         android:textColor="#FFFFFF"
         android:backgroundTint="#4A0D00"
-        android:drawablePadding="8dp"
-        android:padding="12dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,34 +64,52 @@
     <!-- Manage Users Button -->
     <Button
         android:id="@+id/btnManageUsers"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
         android:text="Manage Users"
         android:textColor="#FFFFFF"
         android:backgroundTint="#4A0D00"
-        android:drawablePadding="8dp"
-        android:padding="12dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/btnManageBooks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Pinjam Buku Button -->
+    <Button
+        android:id="@+id/btnPinjamBuku"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:text="Pinjam Buku"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#4A0D00"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnManageUsers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Kemabalikan Buku Button -->
+    <Button
+        android:id="@+id/btnKembalikanBuku"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:text="Kembalikan Buku"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#4A0D00"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/btnPinjamBuku"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Logout Button -->
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
         android:text="Logout"
         android:textColor="#FFFFFF"
         android:backgroundTint="#B00020"
-        android:drawablePadding="8dp"
-        android:padding="12dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/btnManageUsers"
+        app:layout_constraintTop_toBottomOf="@id/btnKembalikanBuku"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

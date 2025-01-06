@@ -15,11 +15,12 @@ public class AdminActivity extends AppCompatActivity {
         // Akses elemen-elemen UI
         Button btnManageBooks = findViewById(R.id.btnManageBooks);
         Button btnManageUsers = findViewById(R.id.btnManageUsers);
+        Button btnPinjamBuku = findViewById(R.id.btnPinjamBuku); // Tombol Pinjam Buku
+        Button btnKembalikanBuku = findViewById(R.id.btnKembalikanBuku);
         Button btnLogout = findViewById(R.id.btnLogout);
 
         // Logika tombol Logout
         btnLogout.setOnClickListener(view -> {
-            // Logout dan kembali ke halaman Login
             Intent intent = new Intent(AdminActivity.this, LoginActivity.class);
             startActivity(intent);
             finish(); // Tutup AdminActivity
@@ -27,17 +28,25 @@ public class AdminActivity extends AppCompatActivity {
 
         // Logika tombol Manage Books
         btnManageBooks.setOnClickListener(view -> {
-            // Tambahkan navigasi untuk mengelola buku
-            // Misalnya, buka halaman baru untuk mengelola buku
             Intent intent = new Intent(AdminActivity.this, ManageBooksActivity.class);
             startActivity(intent);
         });
 
         // Logika tombol Manage Users
         btnManageUsers.setOnClickListener(view -> {
-            // Tambahkan navigasi untuk mengelola pengguna
-            // Misalnya, buka halaman baru untuk mengelola pengguna
             Intent intent = new Intent(AdminActivity.this, ManageUsersActivity.class);
+            startActivity(intent);
+        });
+
+        // Logika tombol Pinjam Buku
+        btnPinjamBuku.setOnClickListener(view -> {
+            Intent intent = new Intent(AdminActivity.this, AdminRequestActivity.class);
+            startActivity(intent);
+        });
+
+        // Logika tombol Kembalikan Buku
+        btnKembalikanBuku.setOnClickListener(view -> {
+            Intent intent = new Intent(AdminActivity.this,  AdminReturnActivity.class);
             startActivity(intent);
         });
     }

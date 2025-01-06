@@ -65,51 +65,53 @@
                     android:contentDescription="Search" />
             </LinearLayout>
 
-            <!-- Banner / Carousel -->
-            <ImageView
-                android:id="@+id/imgBanner"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/rak_buku"
-                android:scaleType="centerCrop"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:contentDescription="Banner" />
+                android:layout_marginBottom="16dp">
 
-            <!-- Section Title: Popular Books -->
+                <!-- Gambar Banner -->
+                <ImageView
+                    android:id="@+id/imgBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/rak_buku"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Banner" />
+
+                <!-- Teks di Tengah Gambar -->
+                <TextView
+                    android:id="@+id/titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R A K    B U K U"
+                    android:textSize="40sp"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="serif"
+                    android:textStyle="bold"
+                    android:layout_gravity="center" />
+            </FrameLayout>
+
+
+
+            <!-- Section Title: Daftar Buku -->
             <TextView
                 android:id="@+id/tvPopularBooks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Popular Books"
+                android:text="Daftar Buku"
                 android:textColor="#4A0D00"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
-            <!-- Grid of Popular Books -->
+            <!-- Grid of Books -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPopularBooks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp" />
-
-            <!-- Section Title: Menambah Ilmu -->
-            <TextView
-                android:id="@+id/tvLearnBooks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Menambah Ilmu"
-                android:textColor="#4A0D00"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <!-- Grid of Learning Books -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvLearnBooks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>
@@ -166,4 +168,3 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

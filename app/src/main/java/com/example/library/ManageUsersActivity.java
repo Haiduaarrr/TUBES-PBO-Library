@@ -1,6 +1,7 @@
 package com.example.library;
 
 import android.os.Bundle;
+import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import java.util.Map;
 public class ManageUsersActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,10 @@ public class ManageUsersActivity extends AppCompatActivity {
         // Inisialisasi RecyclerView
         recyclerView = findViewById(R.id.recyclerViewUsers);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Inisialisasi tombol Back
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(view -> finish());
 
         // Ambil data pengguna dari database
         List<User> users = getUsersFromDatabase();
@@ -49,7 +55,7 @@ public class ManageUsersActivity extends AppCompatActivity {
                 "LEFT JOIN transaction t ON u.user_id = t.user_id " +
                 "LEFT JOIN book b ON t.book_id = b.book_id";
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/perpustakaan", "root", "password");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://10.0.2.2:3306/perpustakaan", "root", "admin");
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 

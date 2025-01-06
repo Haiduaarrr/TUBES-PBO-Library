@@ -23,6 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tvProfileName = findViewById(R.id.tvProfileName);
         TextView tvProfileEmail = findViewById(R.id.tvProfileEmail);
         Button btnLogout = findViewById(R.id.btnLogout);
+        Button btnBack = findViewById(R.id.btnBack);
 
         // Ambil username dari intent yang dikirim dari HomeActivity
         String loggedInUsername = getIntent().getStringExtra("username");
@@ -63,5 +64,8 @@ public class ProfileActivity extends AppCompatActivity {
                     .setNegativeButton("Tidak", null)
                     .show();
         });
+
+        // Logika Tombol Back
+        btnBack.setOnClickListener(view -> finish());
     }
 }
