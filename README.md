@@ -2,7 +2,7 @@
 Tugas Besar kelompok 2, aplikasi Perpustakaan
 
 Kelompok 2:
-1. Muhammad Bagas Wahyudi - 
+1. Muhammad Bagas Wahyudi 
 2. Haidar Sayyid Ramadhan
 3. Haidar Ali
 4. Muhammad Irza Ganesha Pramono
@@ -23,3 +23,5 @@ memverifikasi ketersediaan buku.
 mencatat pengembalian tersebut di sistem. 
 5. Laporan Transaksi: Admin dapat melihat riwayat peminjaman dan pengembalian 
 buku yang dilakukan oleh pengguna. 
+
+
